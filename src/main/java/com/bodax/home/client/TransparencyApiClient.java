@@ -25,7 +25,7 @@ public class TransparencyApiClient {
     public TransparencyApiClient(HttpClient httpClient,
                                  XmlMapper xmlMapper,
                                  @Property(name = "transparency.api.url") String apiUrl,
-                                 @Property(name = "transparency.api.securityToken") String securityToken) {
+                                 @Property(name = "transparency.api.security.token") String securityToken) {
         this.httpClient = httpClient;
         this.xmlMapper = xmlMapper;
         this.securityToken = securityToken;

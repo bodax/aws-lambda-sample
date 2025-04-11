@@ -14,25 +14,31 @@ This project deploys an AWS Lambda using Java + Micronaut and Terraform.
 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-repo/your-project.git
+git clone https://github.com/bodax/aws-lambda-sample.git
 cd your-project
 ./gradlew build
 ```
 
-2. Run terraform commands 
+2. Configure aws credentials, by using
+``aws configure command`` put api keys from AWS account
+
+
+3. Run terraform commands to deploy a resources
 ```
 terraform init
 terraform plan
 terrafrom apply
 ```
 
-3. Fill following parameter in the `application.propertis` or as Lambda env variables:
+4. Fill the following parameters in the `application.propertis` or as Lambda env variables: 
+```
+`transparency.api.url`,              `TRANSPARENCY_API_URL` 
+`transparency.api.security.token`    `TRANSPARENCY_API_SECURITY_TOKEN`
+```
 
-`transparency.api.url`,  
-`transparency.api.securityToken`
 
-4. Run lambda from AWS Console / Labmda / Function / Test and pass any "string" in body form
+5. Run lambda from AWS Console / Lambda / Function / Test and pass any "string" in json body form
 
 
-5. Check `transparency-paring-results-bucket` and it should contain csv file with date interval
+6. Check `transparency-paring-results-bucket` and it should contain csv file with date interval
 and type from api parameters in the filename.

@@ -26,10 +26,6 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
-application {
-    mainClass.set("com.bodax.home.Application") // Or your handler if you have no Application class
-}
-
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17

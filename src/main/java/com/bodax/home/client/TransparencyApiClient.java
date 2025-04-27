@@ -5,10 +5,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import io.micronaut.context.annotation.Property;
 import io.micronaut.http.HttpStatus;
+import io.micronaut.http.uri.UriBuilder;
 import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 
-import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -17,7 +17,7 @@ import java.net.http.HttpResponse;
 @Singleton
 public class TransparencyApiClient {
 
-    private String apiUrl;
+    private final String apiUrl;
     private final String securityToken;
     private final HttpClient httpClient;
     private final XmlMapper xmlMapper;
@@ -29,7 +29,7 @@ public class TransparencyApiClient {
         this.httpClient = httpClient;
         this.xmlMapper = xmlMapper;
         this.securityToken = securityToken;
-        this.apiUrl = apiUrl + "&" + "securityToken=" + securityToken;
+        this.apiUrl = apiUrl;
     }
 
     /**
@@ -39,16 +39,20 @@ public class TransparencyApiClient {
      * @return Response body as a String
      */
     public GenerationData getGenerationData() {
+        final var uri = UriBuilder.of(apiUrl)
+                .queryParam("securityToken", securityToken)
+                .build();
+
         try {
             var request = HttpRequest.newBuilder()
-                    .uri(new URI(apiUrl))
+                    .uri(uri)
                     .GET()
                     .build();
 
             log.info("Fetching data from url: " + apiUrl);
             var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (HttpStatus.OK.getCode() == response.statusCode()) {
-                log.info("Fetching data was sucesfull");
+                log.info("Fetching data was successful");
                 return unMarshall(response.body());
             } else {
                 log.error("API request failed with status code: {}", response.statusCode());

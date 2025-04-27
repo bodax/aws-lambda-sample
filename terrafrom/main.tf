@@ -52,13 +52,13 @@ resource "aws_lambda_function" "my_lambda" {
   function_name = var.lambda_function_name
   handler       = var.lambda_handler
   runtime       = var.lambda_runtime
-  role          = aws_iam_role.lambda_role.arn  # Attach the created IAM Role
+  role          = aws_iam_role.lambda_role.arn
   memory_size   = 256
   timeout       = 30
 
   # If you're using a local file for Lambda deployment:
-  filename      = "build/libs/lambda-transparency-data-parser-0.1-all.jar"   # The JAR file created by your Micronaut build
-  source_code_hash = filebase64sha256("build/libs/lambda-transparency-data-parser-0.1-all.jar")
+  filename      = "../build/libs/lambda-transparency-data-parser-0.1-all.jar"
+  source_code_hash = filebase64sha256("../build/libs/lambda-transparency-data-parser-0.1-all.jar")
 
   environment {
     variables = {

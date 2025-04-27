@@ -16,7 +16,7 @@ out/
 
 # Terraform
 .terraform/
-terraform.tfstate
-terraform.tfstate.backup
-.terraform.lock.hcl
+terrafrom/terraform.tfstate
+terrafrom/terraform.tfstate.backup
+terrafrom/.terraform.lock.hcl
 terraform-provider-*.exe

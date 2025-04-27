@@ -3,13 +3,13 @@ package com.bodax.home.pojo;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 
 @JacksonXmlRootElement(localName = "GL_MarketDocument")
-@Setter
+@AllArgsConstructor
 @Getter
 public class GenerationData {
 

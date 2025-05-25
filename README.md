@@ -1,8 +1,7 @@
 ### Prerequiremets: 
 - aws cli
-- terrafrom cli
-- github account
-- java17
+- terraform cli
+- java21
 - gradle or IDE with built in
 - api token `transparency.entsoe.eu`
 
@@ -35,7 +34,6 @@ terrafrom apply
 `transparency.api.url`,              `TRANSPARENCY_API_URL` 
 `transparency.api.security.token`    `TRANSPARENCY_API_SECURITY_TOKEN`
 ```
-
 
 5. Run lambda from AWS Console / Lambda / Function / Test and pass any "string" in json body form
 

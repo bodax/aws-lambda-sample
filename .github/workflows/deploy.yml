@@ -12,7 +12,6 @@ permissions:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout source
         uses: actions/checkout@v3
@@ -32,8 +31,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID}}:role/${{ env.AWS_GITHUB_PERMISSIONS_ROLE_NAME }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID}}:role/${{ secrets.AWS_GITHUB_PERMISSIONS_ROLE_NAME }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Upload jar to S3
         run: |
@@ -43,7 +42,7 @@ jobs:
         run: |
           aws lambda update-function-code \
             --function-name my-lambda-function \
-            --s3-bucket ${{ env.BUCKET_NAME }}  \
+            --s3-bucket ${{ secrets.BUCKET_NAME }}  \
             --s3-key lambda-function.jar \
             --handler com.bodax.home.LambdaMainHandler \
             --runtime java21

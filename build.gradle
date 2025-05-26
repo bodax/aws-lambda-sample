@@ -1,6 +1,9 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
+    id("java")
     id("io.micronaut.application") version "4.5.0"
-    id("com.gradleup.shadow") version "8.3.6"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 version = "0.1"
@@ -30,6 +33,14 @@ java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
 }
+
+tasks.withType(ShadowJar).configureEach {
+    mainClassName = 'io.micronaut.function.aws.runtime.MicronautLambdaRuntime'
+    manifest {
+        attributes 'Main-Class': 'io.micronaut.function.aws.runtime.MicronautLambdaRuntime'
+    }
+}
+
 
 micronaut {
     runtime("lambda_java")

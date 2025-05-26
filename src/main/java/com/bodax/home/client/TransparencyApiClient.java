@@ -49,7 +49,7 @@ public class TransparencyApiClient {
                     .GET()
                     .build();
 
-            log.info("Fetching data from url: " + apiUrl);
+            log.info("Fetching data from url: {}", apiUrl);
             var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
             if (HttpStatus.OK.getCode() == response.statusCode()) {
                 log.info("Fetching data was successful");
